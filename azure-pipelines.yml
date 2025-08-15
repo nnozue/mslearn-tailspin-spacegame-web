@@ -28,7 +28,7 @@ steps:
     verbose: false
 
 - script: |
-    npx node-saas wwwroot --output wwwroot'
+    npx node-sass wwwroot --output wwwroot'
   displayName: 'Compile Sass assets'
   workingDirectory: Tailspin.SpaceGame.Web
 
