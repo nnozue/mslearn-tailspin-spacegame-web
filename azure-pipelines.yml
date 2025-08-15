@@ -17,7 +17,7 @@ steps:
 - task: NodeTool@0
   displayName: 'Use Node 16.x'
   inputs:
-    versionSpec: 'Use 16.x'
+    versionSpec: '16.x'
     checkLatest: true
 
 - task: Npm@1
