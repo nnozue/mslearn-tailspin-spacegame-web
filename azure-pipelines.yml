@@ -14,13 +14,21 @@ steps:
     packageType: sdk
     version: '6.x'
 
-- task: Npm@1
-  displayName: 'Run npm install'
+- task: NodeTool@0
+  displayName: 'Use Node 16.x'
   inputs:
+  versionSpec: 'Use '16.x'
+
+- task: Npm@1
+  displayName: 'npm ci'
+  inputs:
+    command: 'ci'
+    workingDirectory: Tailspin.SpaceGame.Web
     verbose: false
 
 - script: './node_modules/.bin/node-sass Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'
   displayName: 'Compile Sass assets'
+  workingDirectory: Tailspin.SpaceGame.Web
 
 - task: gulp@1
   displayName: 'Run gulp tasks'
