@@ -9,10 +9,11 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .NET SDK 6.x'
+  displayName: 'Use .NET SDK 8.x'
   inputs:
     packageType: sdk
-    version: '6.x'
+    version: '8.x'
+    performMultiLevelLookup: true
 
 - task: NodeTool@0
   displayName: 'Use Node 16.x'
@@ -51,3 +52,9 @@ steps:
     command: 'build'
     arguments: '--no-restore --configuration Release'
     projects: '**/*.csproj'
+
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK 8.x (default)'
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'   # ← 最後に入れて既定にする
