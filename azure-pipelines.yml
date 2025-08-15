@@ -6,6 +6,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  webDir: 'Tailspin.SpaceGame.Web'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
   dotnetSdkVersion: '8.x'
 
@@ -30,9 +31,11 @@ steps:
     workingDirectory: Tailspin.SpaceGame.Web
     verbose: false
 
-- script: './node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)'
+# Sass: Webプロジェクト直下で npx を使う
+- script: |
+    npx node-sass wwwroot --output wwwroot
   displayName: 'Compile Sass assets'
-  workingDirectory: $(wwwrootDir)
+  workingDirectory: '$(webDir)'
 
 - task: gulp@1
   displayName: 'Run gulp tasks'
